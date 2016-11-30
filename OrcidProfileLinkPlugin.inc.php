@@ -1,13 +1,13 @@
 <?php
 
 /**
- * @file plugins/generic/orcidProfile/OrcidProfilePluginView.inc.php
+ * @file plugins/generic/orcidProfile/OrcidProfileLinkPlugin.inc.php
  *
  * Copyright (c) National Documentation Centre
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class OrcidProfilePluginView
- * @ingroup plugins_generic_orcidProfileView
+ * @ingroup plugins_generic_orcidProfileLink
  *
  * @brief ORCID Profile View plugin class
  */

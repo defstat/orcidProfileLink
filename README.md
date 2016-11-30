@@ -2,7 +2,7 @@
 
 **NOTE: This plugin is a work in progress and not yet ready for production use.**
 
-**NOTE: Please ensure you're using the correct branch. Use [ojs-dev-2_4 branch](https://github.com/defstat/OJS-ORCIDProfileLink) for OJS 2.4.x.**
+**NOTE: Please ensure you're using the correct branch. Use [ojs-dev-2_4 branch](https://github.com/defstat/OJS-ORCiD-ProfileLink) for OJS 2.4.x.**
 
 Plugin for PKP user link to ORCID profiles (tested with OJS 2.x)
 

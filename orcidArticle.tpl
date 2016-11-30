@@ -1,5 +1,5 @@
 {**
- * plugins/generic/orcidProfileLink/orcidIssue.tpl
+ * plugins/generic/orcidProfileLink/orcidArticle.tpl
  *
  * Copyright (c) National Documentation Centre
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
