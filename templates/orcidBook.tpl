@@ -10,7 +10,8 @@
 <script type="text/javascript">
 
 	$(function() {ldelim}
-		$("#authorString").hide();
+	    $('.item.authors').hide();
+	    $('#orcidProfileLinkPlugin-authors').show();
 	{rdelim})
 </script>
 
@@ -20,10 +21,15 @@
 			<div class="sub_item">
 				<div class="label">
 					{$author->getFullName()|escape}
-                    {if $author->getData('orcid')}
-                        <a target="_blank" href="{$author->getData('orcid')}"><img src="{$baseUrl}/plugins/generic/orcidProfileLink/templates/images/orcid_16x16.png" /></a>
-                    {/if}
 				</div>
+                
+                {if $author->getData('orcid')}
+                    <p>
+                        <a href="http://orcid.org"><img alt="ORCID logo" hspace="4" src="http://orcid.org/sites/default/files/images/orcid_16x16.png" style="width: 16px; height: 16px;"></a>
+                        {*<a target="_blank" href="{$author->getData('orcid')}"><img src="{$baseUrl}/plugins/generic/orcidProfileLink/templates/images/orcid_16x16.png" />{$author->getData('orcid')}</a>*}
+                        <a target="_blank" href="{$author->getData('orcid')}">{$author->getData('orcid')}</a>
+                    </p>
+                {/if}
 				<div class="value">
 					<div class="role">
 						{$author->getLocalizedUserGroupName()|escape}
