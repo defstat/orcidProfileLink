@@ -51,6 +51,9 @@ class OrcidProfileLinkPlugin extends GenericPlugin {
 			case 'article/article.tpl':
 				$templateMgr->register_outputfilter(array(&$this, 'templateArticleFilter'));
 				break;
+			case 'frontend/pages/book.tpl':
+				$templateMgr->register_outputfilter(array(&$this, 'templateBookFilter'));
+				break;
 		}
 		return false;
 	}
@@ -75,6 +78,33 @@ class OrcidProfileLinkPlugin extends GenericPlugin {
 
 			$newOutput = substr($output, 0, $offset);
 			$newOutput .= $templateMgr->fetch($this->getTemplatePath() . 'orcidArticle.tpl');
+			$newOutput .= substr($output, $offset);
+			$output = $newOutput;
+		}
+		$templateMgr->unregister_outputfilter('templateArticleFilter');
+		return $output;
+	}
+
+	/**
+	 * Output filter adds ORCiD profile link to monograph view page.
+	 * @param $output string
+	 * @param $templateMgr TemplateManager
+	 * @return $string
+	 */
+	function templateBookFilter($output, &$templateMgr) {
+		if (preg_match('/<div class="item authors"+>/', $output, $matches, PREG_OFFSET_CAPTURE)) {
+			$offset = $matches[0][1];
+
+            // Make the author string with it's ORCID link.
+            $monograph = $templateMgr->get_template_vars('publishedMonograph');
+            //$str = $this->getAuthorNameWithOrcid($monograph);
+
+			$templateMgr->assign(array(
+				'$publishedMonograph' => $monograph,
+			));
+
+			$newOutput = substr($output, 0, $offset);
+			$newOutput .= $templateMgr->fetch($this->getTemplatePath() . 'orcidBook.tpl');
 			$newOutput .= substr($output, $offset);
 			$output = $newOutput;
 		}
@@ -113,6 +143,14 @@ class OrcidProfileLinkPlugin extends GenericPlugin {
 	 */
 	function getDescription() {
 		return __('plugins.generic.orcidProfileLink.description');
+	}
+
+	/**
+	 * @see Plugin::getTemplatePath()
+	 * @param $inCore boolean True iff a core template should be preferred
+	 */
+	function getTemplatePath($inCore = false) {
+		return parent::getTemplatePath($inCore) . 'templates/';
 	}
 
 	/**
